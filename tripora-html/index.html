@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tripora — Plan Your Trips</title>
+  <meta name="description" content="Curated travel experiences. Plan your trips with 10 clicks." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <svg class="brand-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2.5" />
+          <path d="M32 8 L36 32 L56 32 L36 36 L32 56 L28 36 L8 32 L28 32 Z" fill="currentColor" />
+          <circle cx="32" cy="32" r="4" fill="#0b1220" />
+        </svg>
+        <div class="brand-text">
+          <div class="brand-name">TRIPORA</div>
+          <div class="brand-tagline">Plan Your Trips With 10 Clicks</div>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#destinations">Destinations</a>
+        <a href="#experiences">Experiences</a>
+        <a href="#">Journal</a>
+        <a href="#">About</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+        </button>
+        <a href="#" class="btn btn-primary">Book Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero slideshow -->
+  <section class="hero">
+    <div class="hero-slides" id="hero-slides"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="hero-bg-text" id="hero-bg-text">PHILIPPINES</div>
+
+      <div class="hero-left">
+        <p class="hero-country" id="hero-country">PHILIPPINES</p>
+        <h1 class="hero-title" id="hero-title">PALAWAN</h1>
+        <p class="hero-desc" id="hero-desc">Glide through emerald lagoons hidden between towering limestone cliffs. Sleep where the sea is the only soundtrack and the stars feel close enough to touch.</p>
+        <a href="palawan.html" class="btn btn-primary hero-btn">
+          Book Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-cards" id="hero-cards"></div>
+        <div class="hero-controls">
+          <button id="prev-slide" class="circle-btn" aria-label="Previous">‹</button>
+          <button id="next-slide" class="circle-btn" aria-label="Next">›</button>
+        </div>
+        <div class="hero-counter">
+          <span id="slide-num">01</span><span class="hero-counter-total"> / 04</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking widget -->
+    <div class="container booking-wrap">
+      <div class="booking-widget">
+        <div class="booking-field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 8 13 8 13Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <div>
+            <div class="booking-label">WHERE TO</div>
+            <input type="text" placeholder="Anywhere" />
+          </div>
+        </div>
+        <div class="booking-field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+          <div>
+            <div class="booking-label">WHEN</div>
+            <input type="text" placeholder="Add dates" />
+          </div>
+        </div>
+        <div class="booking-field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-3 3-5 7-5s7 2 7 5"/><circle cx="17" cy="7" r="3"/><path d="M22 19c0-2.4-2.2-4-5-4"/></svg>
+          <div>
+            <div class="booking-label">WHO</div>
+            <input type="text" placeholder="Add guests" />
+          </div>
+        </div>
+        <button class="btn btn-primary booking-btn">Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="marquee">
+    <div class="marquee-fade marquee-fade-left"></div>
+    <div class="marquee-fade marquee-fade-right"></div>
+    <div class="marquee-track" id="marquee-track"></div>
+  </section>
+
+  <!-- Destinations -->
+  <section class="destinations" id="destinations">
+    <div class="orb orb-primary"></div>
+    <div class="orb orb-secondary"></div>
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">The Tripora Atlas</p>
+          <h2 class="section-title">Mythical places.<br /><em>Real</em> experiences.</h2>
+          <p class="lead">Every destination is a story waiting to be written. We handpick locations that stir the soul and leave a lasting mark on your memory.</p>
+        </div>
+        <a href="#" class="btn btn-outline section-cta">View all destinations →</a>
+      </div>
+
+      <div class="destinations-grid" id="destinations-grid"></div>
+    </div>
+  </section>
+
+  <!-- Storytelling -->
+  <section class="storytelling">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-collage">
+          <div class="story-img story-img-1 reveal" data-reveal="left"><img src="https://i.pinimg.com/564x/56/72/f0/5672f0618de0abf28670573385013156.jpg" alt="Dubai" /></div>
+          <div class="story-img story-img-2 reveal" data-reveal="up"><img src="https://pbs.twimg.com/media/DnnKinSV4AA3N0h.jpg" alt="Kyoto" /></div>
+          <div class="story-img story-img-3 reveal" data-reveal="right"><img src="https://pbs.twimg.com/media/GnuqJb6XAAAUVXD.jpg" alt="China" /></div>
+          <div class="story-pill float">
+            <span class="dot"></span>
+            42 trips departing this month
+          </div>
+        </div>
+
+        <div class="story-content reveal" data-reveal="up">
+          <p class="eyebrow">Our Philosophy</p>
+          <h2 class="section-title">Travel <em>differently.</em></h2>
+          <p class="lead">We believe travel is more than ticking boxes. It's the feeling of the sun on your skin in a place you've never been. The taste of a meal that redefines your palate. The quiet moments on a balcony overlooking an ocean you'll never forget.</p>
+          <ul class="feature-list">
+            <li>
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 8 13 8 13Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              </span>
+              <div>
+                <h4>Curated Itineraries</h4>
+                <p>Expertly crafted journeys that balance iconic sights with hidden gems.</p>
+              </div>
+            </li>
+            <li>
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-3 3-5 7-5s7 2 7 5"/><circle cx="17" cy="7" r="3"/><path d="M22 19c0-2.4-2.2-4-5-4"/></svg>
+              </span>
+              <div>
+                <h4>Local Connections</h4>
+                <p>Meaningful interactions with local guides, artisans, and chefs.</p>
+              </div>
+            </li>
+            <li>
+              <span class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7 7 .8-5.3 4.7L18 22l-6-3.5L6 22l1.3-7.5L2 9.8 9 9z"/></svg>
+              </span>
+              <div>
+                <h4>Polished Down to the Detail</h4>
+                <p>Hand-picked stays, private transfers, and a concierge that anticipates everything.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiences -->
+  <section class="experiences" id="experiences">
+    <div class="container">
+      <div class="text-center reveal" data-reveal="up">
+        <p class="eyebrow">Curated Moods</p>
+        <h2 class="section-title">Moments that <em>linger.</em></h2>
+        <p class="lead">It's not just where you go, but how it makes you feel.</p>
+      </div>
+
+      <div class="experiences-grid" id="experiences-grid"></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stats-bg"><img src="images/bali-terraces.png" alt="" /></div>
+    <div class="stats-overlay"></div>
+    <div class="container stats-grid">
+      <div class="stat reveal" data-reveal="up"><div class="stat-value">84</div><div class="stat-label">Curated Destinations</div></div>
+      <div class="stat reveal" data-reveal="up"><div class="stat-value">12k+</div><div class="stat-label">Travelers Sent Off</div></div>
+      <div class="stat reveal" data-reveal="up"><div class="stat-value">4.9</div><div class="stat-label">Average Review Score</div></div>
+      <div class="stat reveal" data-reveal="up"><div class="stat-value">24/7</div><div class="stat-label">Concierge On Call</div></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="testimonials-grid">
+        <div class="reveal" data-reveal="up">
+          <p class="eyebrow">Words From the Road</p>
+          <h2 class="section-title">What our travelers say.</h2>
+          <svg class="quote-mark" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h4v4H8v3H4V11c0-2.2 1.3-4 3-4Zm9 0h4v4h-3v3h-4V11c0-2.2 1.3-4 3-4Z"/></svg>
+          <p class="quote">"Our trip to Palawan was nothing short of magical. Tripora took care of every detail so we could just exist in the moment. The lagoons were breathtaking."</p>
+          <div class="testimonial-author">
+            <div class="avatar">S</div>
+            <div>
+              <div class="author-name">Sarah &amp; James</div>
+              <div class="author-meta">Traveled to Palawan</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-image-wrap reveal" data-reveal="up">
+          <div class="testimonial-image float"><img src="images/palawan-lagoons.png" alt="Happy travelers" /></div>
+          <div class="rating-pill">
+            <div class="stars">★ ★ ★ ★ ★</div>
+            <div>4.9 / 5 from 2,400+ reviews</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-bg"><img src="images/maldives.png" alt="" /></div>
+    <div class="cta-overlay"></div>
+    <div class="container text-center cta-content reveal" data-reveal="up">
+      <h2 class="cta-title">Your next chapter is <em>already booked.</em></h2>
+      <p class="lead">Tell us where you've been dreaming. We'll handle the rest.</p>
+      <a href="palawan.html" class="btn btn-primary btn-lg">Start Planning →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand brand-footer">
+            <svg class="brand-logo" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2.5" />
+              <path d="M32 8 L36 32 L56 32 L36 36 L32 56 L28 36 L8 32 L28 32 Z" fill="currentColor" />
+              <circle cx="32" cy="32" r="4" fill="#0b1220" />
+            </svg>
+            <span class="brand-name">TRIPORA</span>
+          </a>
+          <p class="footer-tagline">Curating unforgettable journeys for those who seek the extraordinary. Plan your trips with 10 clicks.</p>
+        </div>
+        <div>
+          <h5>Explore</h5>
+          <ul><li><a href="#destinations">Destinations</a></li><li><a href="#experiences">Experiences</a></li><li><a href="#">Journal</a></li><li><a href="#">About</a></li></ul>
+        </div>
+        <div>
+          <h5>Support</h5>
+          <ul><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li><li><a href="#">Concierge</a></li><li><a href="#">Press</a></li></ul>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Cookies</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Tripora. All rights reserved.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Twitter">X</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Youtube">YT</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
