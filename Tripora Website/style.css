@@ -1,8 +1,4 @@
-/* ============================================
-   Tripora — Vanilla CSS
-   ============================================ */
-
-:root {
+:root { /*These are all the colors and fonts, theyre saved as variables so it is simpler to edit them*/
   --bg: hsl(220, 30%, 9%);
   --bg-elevated: hsl(220, 25%, 13%);
   --card: hsl(220, 24%, 14%);
@@ -44,7 +40,6 @@ ul { list-style: none; }
 
 .text-center { text-align: center; }
 
-/* ===== Typography ===== */
 .section-title {
   font-family: var(--serif);
   font-size: clamp(2.25rem, 5vw, 4rem);
@@ -68,7 +63,6 @@ ul { list-style: none; }
   max-width: 38rem;
 }
 
-/* ===== Buttons ===== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -120,7 +114,6 @@ ul { list-style: none; }
 }
 .circle-btn:hover { background: hsla(0, 0%, 100%, 0.12); }
 
-/* ===== Navbar ===== */
 .navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -130,7 +123,7 @@ ul { list-style: none; }
   backdrop-filter: blur(8px);
   transition: background 0.3s ease, padding 0.3s ease;
 }
-.navbar.scrolled {
+.navbar.scrolled { /*Makes it so the navbar bg becomes darker and this adds a border after scrolling down*/
   background: hsla(220, 30%, 7%, 0.92);
   padding: 0.6rem 0;
   border-bottom: 1px solid var(--border);
@@ -172,7 +165,7 @@ ul { list-style: none; }
   transition: color 0.2s;
   position: relative;
 }
-.nav-links a::after {
+.nav-links a::after { /*This makes the underline underneath the nav links, it gets bigger when you hover over them*/
   content: '';
   position: absolute;
   left: 0; bottom: -6px;
@@ -184,7 +177,6 @@ ul { list-style: none; }
 .nav-links a:hover::after { width: 100%; }
 .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
 
-/* ===== Hero ===== */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -208,7 +200,7 @@ ul { list-style: none; }
   transform: scale(1.05);
   animation: heroZoom 12s ease-in-out infinite alternate;
 }
-@keyframes heroZoom {
+@keyframes heroZoom { /*  Creates the animation of zooming on the hero bg pictures*/
   from { transform: scale(1.05); }
   to { transform: scale(1.18); }
 }
@@ -229,7 +221,7 @@ ul { list-style: none; }
   flex: 1;
   padding-top: 2rem;
 }
-.hero-bg-text {
+.hero-bg-text { /*This adds a name of the country but it is in the background and a bit faded so it maybe hard to see*/
   position: absolute;
   font-family: var(--serif);
   font-weight: 900;
@@ -288,7 +280,7 @@ ul { list-style: none; }
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   border: 2px solid transparent;
 }
-.hero-card.active {
+.hero-card.active { /*This code will show the selected thumbnail card and adds a white border to show that it is active*/
   border-color: hsla(0, 0%, 100%, 0.6);
   box-shadow: 0 20px 40px -10px hsla(0, 0%, 0%, 0.5);
 }
@@ -354,7 +346,6 @@ ul { list-style: none; }
 }
 .hero-counter-total { color: var(--muted); font-size: 0.9rem; font-weight: 400; }
 
-/* ===== Booking widget ===== */
 .booking-wrap { position: relative; z-index: 3; }
 .booking-widget {
   display: grid;
@@ -396,7 +387,6 @@ ul { list-style: none; }
 .booking-field input::placeholder { color: hsla(0, 0%, 100%, 0.5); }
 .booking-btn { height: 100%; padding: 1rem 2rem; }
 
-/* ===== Marquee ===== */
 .marquee {
   position: relative;
   border-top: 1px solid var(--border);
@@ -444,7 +434,6 @@ ul { list-style: none; }
   background: linear-gradient(to top, hsla(0, 0%, 0%, 0.6), transparent);
 }
 
-/* ===== Destinations grid ===== */
 .destinations { position: relative; padding: 7rem 0; overflow: hidden; }
 .orb {
   position: absolute;
@@ -550,7 +539,6 @@ ul { list-style: none; }
 }
 .dest-card:hover .dest-card-explore { opacity: 1; }
 
-/* ===== Storytelling ===== */
 .storytelling { padding: 7rem 0; background: var(--card); }
 .story-grid {
   display: grid;
@@ -608,7 +596,6 @@ ul { list-style: none; }
 .feature-list h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.25rem; }
 .feature-list p { color: var(--muted); font-size: 0.95rem; }
 
-/* ===== Experiences ===== */
 .experiences { padding: 7rem 0; }
 .experiences .text-center { margin: 0 auto 4rem; max-width: 38rem; }
 .experiences-grid {
@@ -659,7 +646,6 @@ ul { list-style: none; }
 }
 .exp-card:hover .exp-card-desc { opacity: 1; }
 
-/* ===== Stats ===== */
 .stats {
   position: relative;
   padding: 5rem 0;
@@ -696,7 +682,6 @@ ul { list-style: none; }
   color: var(--muted);
 }
 
-/* ===== Testimonials ===== */
 .testimonials { padding: 7rem 0; background: var(--card); }
 .testimonials-grid {
   display: grid;
@@ -751,7 +736,6 @@ ul { list-style: none; }
 .rating-pill .stars { color: var(--primary); margin-bottom: 0.25rem; }
 .rating-pill div:last-child { font-size: 0.85rem; font-weight: 600; }
 
-/* ===== CTA ===== */
 .cta {
   position: relative;
   padding: 7rem 0;
@@ -776,7 +760,6 @@ ul { list-style: none; }
 .cta-title em { font-style: italic; color: var(--primary); }
 .cta .lead { margin: 1.5rem auto 2.5rem; }
 
-/* ===== Footer ===== */
 .footer {
   background: var(--bg);
   border-top: 1px solid var(--border);
@@ -822,9 +805,8 @@ ul { list-style: none; }
 }
 .socials a:hover { background: var(--primary); color: #001220; border-color: var(--primary); }
 
-/* ===== Animations ===== */
 .float { animation: floatY 5s ease-in-out infinite; }
-@keyframes floatY {
+@keyframes floatY { /*This code adds certain elements that slowly float up and down*/
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
@@ -834,11 +816,10 @@ ul { list-style: none; }
   transform: translateY(28px);
   transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.reveal[data-reveal="left"] { transform: translateX(-32px); }
+.reveal[data-reveal="left"] { transform: translateX(-32px); } /*Elemets are unseable at first and slides up, but then you will be able to see if scrolled into them*/
 .reveal[data-reveal="right"] { transform: translateX(32px); }
 .reveal.in-view { opacity: 1; transform: translate(0, 0); }
 
-/* ===== Palawan page ===== */
 .page-hero {
   position: relative;
   min-height: 80vh;
@@ -892,8 +873,7 @@ ul { list-style: none; }
 .itinerary-day h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
 .itinerary-day p { color: var(--muted); }
 
-/* ===== Responsive ===== */
-@media (max-width: 1024px) {
+@media (max-width: 1024px) { /*these make the layout stack into columns on smaller screens*/
   .nav-links { display: none; }
   .hero-content { grid-template-columns: 1fr; gap: 3rem; }
   .hero-right { align-items: flex-start; }
@@ -924,3 +904,97 @@ ul { list-style: none; }
   .story-img-3 { width: 230px; height: 190px; }
   .itinerary-day { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.5rem; }
 }
+
+.booking-modal-overlay { /*Hides the booking pop by default, and fades in when the user opens it*/
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: hsla(220, 30%, 5%, 0.75);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.booking-modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.booking-modal {
+  background: hsl(220, 25%, 13%);
+  border: 1px solid hsla(0, 0%, 100%, 0.12);
+  border-radius: 2rem;
+  padding: 3rem 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 40px 80px -20px hsla(0, 0%, 0%, 0.7);
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+  opacity: 0;
+}
+.booking-modal-overlay.open .booking-modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+.booking-modal-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 999px;
+  background: hsla(195, 80%, 50%, 0.15);
+  border: 1px solid hsla(195, 80%, 50%, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--primary);
+}
+.booking-modal-icon svg { width: 32px; height: 32px; }
+.booking-modal-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+.booking-modal-title {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+.booking-modal-desc {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+.booking-modal-ref {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  background: hsla(0, 0%, 100%, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  margin-bottom: 2rem;
+}
+.booking-modal-ref-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.booking-modal-ref-code {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+}
+.booking-modal-close { width: 100%; justify-content: center; }

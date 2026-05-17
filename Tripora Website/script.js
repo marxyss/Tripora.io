@@ -1,58 +1,54 @@
-/* ============================================
-   Tripora — Vanilla JS
-   ============================================ */
-
 const slides = [
   {
     id: "palawan",
     name: "Palawan",
     country: "Philippines",
-    image: "images/palawan-lagoons.png",
+    image: "https://www.beautifulworld.com/wp-content/uploads/2016/10/PALAWAN-ISLAND.jpg.webp",
     desc: "Glide through emerald lagoons hidden between towering limestone cliffs. Sleep where the sea is the only soundtrack and the stars feel close enough to touch.",
   },
   {
     id: "istanbul",
     name: "Istanbul",
     country: "Turkey",
-    image: "images/istanbul.png",
+    image: "https://www.shutterstock.com/image-photo/sunset-over-historic-istanbul-mosque-600nw-2706707905.jpg",
     desc: "Where continents and centuries collide. Drift between bazaars, Bosphorus ferries, and rooftop calls to prayer at dusk.",
   },
   {
     id: "maldives",
     name: "Maldives",
     country: "Indian Ocean",
-    image: "images/maldives.png",
+    image: "https://img.magnific.com/premium-photo/picturesque-sunrise-maldives-island-sun-rising-from-indian-ocean-reflected-water-travel-concept-palm-trees-hanging-water_154634-839.jpg",
     desc: "Overwater villas, bioluminescent shores, and the deepest blue you have ever seen. Pure horizon-line therapy.",
   },
   {
-    id: "Queenstown",
+    id: "queenstown",
     name: "Queens town",
-    country: "Palawan",
+    country: "New Zealand",
     image: "https://images.tourscanner.com/wp-content/uploads/2023/03/things-to-do-in-Queenstown-New-Zealand.jpg",
     desc: "Neon-soaked alleys and centuries-old shrines, hidden ramen counters and skyline observatories — a city of beautiful contradictions.",
   },
 ];
 
 const destinations = [
-  { id: "palawan", name: "Palawan", country: "Philippines", image: "", desc: "Limestone karsts and emerald lagoons." },
-  { id: "tokyo", name: "Tokyo", country: "Japan", image: "", desc: "Neon streets and tranquil shrines." },
-  { id: "istanbul", name: "Istanbul", country: "Turkey", image: "", desc: "Where continents and eras collide." },
-  { id: "maldives", name: "Maldives", country: "Indian Ocean", image: "", desc: "Overwater serenity in turquoise water." },
-  { id: "bali", name: "Bali", country: "Indonesia", image: "", desc: "Jungle terraces and spiritual escapes." },
-  { id: "santorini", name: "Santorini", country: "Greece", image: "", desc: "Whitewashed cliffs over sapphire seas." },
-  { id: "kyoto", name: "Kyoto", country: "Japan", image: "", desc: "Lantern-lit streets and ancient temples." },
-  { id: "patagonia", name: "Patagonia", country: "Chile", image: "", desc: "Untamed glaciers at the edge of the world." },
-  { id: "dubai", name: "Dubai", country: "UAE", image: "", desc: "Skyline of glass and gold above the dunes." },
-  { id: "thailand", name: "Thailand", country: "Southeast Asia", image: "", desc: "Limestone islands and longtail sunsets." },
-  { id: "kerala", name: "Kerala", country: "India", image: "", desc: "Houseboats drifting through palm-lined backwaters." },
-  { id: "georgia", name: "Georgia", country: "Caucasus", image: "", desc: "Stone churches in the shadow of Kazbek." },
+  { id: "palawan", name: "Palawan", country: "Philippines", image: "https://wallpapers.com/images/high/palawan-beach-of-the-philippines-3phgsk1a5n0m0i4k.webp", desc: "Limestone karsts and emerald lagoons." },
+  { id: "tokyo", name: "Tokyo", country: "Japan", image: "https://images.squarespace-cdn.com/content/v1/643edfc732ef0912a0515118/1683030690272-1027FSG16OQ4X8DCHGLX/KNOF-curiocity-guides-Tokyo-Japan", desc: "Neon streets and tranquil shrines." },
+  { id: "istanbul", name: "Istanbul", country: "Turkey", image: "https://i.pinimg.com/474x/4f/2a/35/4f2a351eb8de34a88f1b576082d7fb7e.jpg", desc: "Where continents and eras collide." },
+  { id: "maldives", name: "Maldives", country: "Indian Ocean", image: "https://i2.pickpik.com/photos/638/272/887/maldives-travel-indian-ocean-ocean-preview.jpg", desc: "Overwater serenity in turquoise water." },
+  { id: "bali", name: "Bali", country: "Indonesia", image: "https://www.annees-de-pelerinage.com/wp-content/uploads/2018/09/Penida-Island-bali-indonesia-685x1024.jpg", desc: "Jungle terraces and spiritual escapes." },
+  { id: "santorini", name: "Santorini", country: "Greece", image: "https://i.pinimg.com/236x/7c/28/ea/7c28eaf433cee4728de91f55122a5fe5.jpg?nii=t", desc: "Whitewashed cliffs over sapphire seas." },
+  { id: "kyoto", name: "Kyoto", country: "Japan", image: "https://i.pinimg.com/736x/ae/af/b4/aeafb4826310aa3f274e4c741780eb7e.jpg", desc: "Lantern-lit streets and ancient temples." },
+  { id: "patagonia", name: "Patagonia", country: "Chile", image: "https://i.pinimg.com/474x/4d/f8/34/4df8342aa3687173f99a5940b1781302.jpg", desc: "Untamed glaciers at the edge of the world." },
+  { id: "dubai", name: "Dubai", country: "UAE", image: "https://cdn.wallpapersafari.com/66/18/Unz9XZ.jpg", desc: "Skyline of glass and gold above the dunes." },
+  { id: "thailand", name: "Thailand", country: "Southeast Asia", image: "https://images.squarespace-cdn.com/content/v1/6420c596140c9344224d1692/1739240514895-AIODA0ZCZHYKIRXFUMVJ/unsplash-image-ytZOB9FLIqk.jpg", desc: "Limestone islands and longtail sunsets." },
+  { id: "kerala", name: "Kerala", country: "India", image: "https://i.pinimg.com/736x/c1/da/cb/c1dacbefe167f0153954ca19518b2ff2.jpg", desc: "Houseboats drifting through palm-lined backwaters." },
+  { id: "georgia", name: "Georgia", country: "Caucasus", image: "https://beyondwildplaces.com/wp-content/uploads/2021/12/Svaneti-region-Caucasus.jpg", desc: "Stone churches in the shadow of Kazbek." },
 ];
 
 const experiences = [
-  { img: "images/couple-beach.jpg", title: "Romantic Escapes", desc: "Private beaches, sunset strolls." },
-  { img: "images/luxury-balcony.jpg", title: "Unparalleled Luxury", desc: "Awaken to ocean views." },
-  { img: "images/culinary.jpg", title: "Edible Adventures", desc: "Markets, omakase, dive bars." },
-  { img: "images/patagonia.jpg", title: "Wild Frontiers", desc: "Glaciers, fjords, no signal." },
+  { img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQHggpg9wRMcGc8I3pohTuZ8fx52uT1YitWQ&s", title: "Romantic Escapes", desc: "Private beaches, sunset strolls." },
+  { img: "https://thumbs.dreamstime.com/b/exclusive-private-jet-boarding-experience-glimpse-unparalleled-travel-luxury-step-aboard-pinnacle-351480215.jpg", title: "Unparalleled Luxury", desc: "Awaken to ocean views." },
+  { img: "https://t4.ftcdn.net/jpg/02/74/75/59/360_F_274755986_wgBdzMHVMP96J6V9F4l7y5Befw3iwfqj.jpg", title: "Edible Adventures", desc: "Markets, omakase, dive bars." },
+  { img: "https://thumbs.dreamstime.com/b/peaceful-evening-rocky-adriatic-shore-under-clear-blue-sky-petrovac-montenegro-summer-vacation-vibes-447786642.jpg", title: "Wild Frontiers", desc: "Glaciers, fjords, no signal." },
 ];
 
 const marqueeImages = [
@@ -74,11 +70,10 @@ const marqueeImages = [
   "https://dancingtheearth.com/wp-content/smush-webp/2022/03/Cathedral-Cove-sunrise-North-Island-Photography-Spots-Dancing-the-Earth.jpg.webp",
 ];
 
-/* ----- Hero slideshow ----- */
 let activeSlide = 0;
 let slideInterval;
 
-const slidesEl = document.getElementById("hero-slides");
+const slidesEl = document.getElementById("hero-slides"); //These is the code that needs to update for the page to change when sliding
 const cardsEl = document.getElementById("hero-cards");
 const titleEl = document.getElementById("hero-title");
 const countryEl = document.getElementById("hero-country");
@@ -90,7 +85,7 @@ function bookmarkSvg() {
   return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16Z"/></svg>';
 }
 
-function renderSlides() {
+function renderSlides() {  //This makes all the slide images and builds the small cards from the imagies provided above
   if (!slidesEl) return;
   slidesEl.innerHTML = slides
     .map(
@@ -122,7 +117,7 @@ function renderSlides() {
   });
 }
 
-function goToSlide(idx) {
+function goToSlide(idx) { //This code is for when you click on a card or the arrows, then this code updates everything
   activeSlide = (idx + slides.length) % slides.length;
   const s = slides[activeSlide];
   document.querySelectorAll(".hero-slide").forEach((el, i) =>
@@ -141,7 +136,7 @@ function goToSlide(idx) {
   if (bgTextEl) bgTextEl.textContent = s.country.toUpperCase();
 }
 
-function restartAutoplay() {
+function restartAutoplay() { //This will reset the timer for the autoslide, so that it doesnt skip if you click
   clearInterval(slideInterval);
   slideInterval = setInterval(() => goToSlide(activeSlide + 1), 6500);
 }
@@ -158,7 +153,6 @@ document.getElementById("next-slide")?.addEventListener("click", () => {
 renderSlides();
 restartAutoplay();
 
-/* ----- Marquee ----- */
 const marqueeTrack = document.getElementById("marquee-track");
 if (marqueeTrack) {
   // Duplicate for seamless loop
@@ -167,7 +161,6 @@ if (marqueeTrack) {
     .join("");
 }
 
-/* ----- Destinations grid ----- */
 const grid = document.getElementById("destinations-grid");
 if (grid) {
   grid.innerHTML = destinations
@@ -188,7 +181,6 @@ if (grid) {
     .join("");
 }
 
-/* ----- Experiences ----- */
 const expGrid = document.getElementById("experiences-grid");
 if (expGrid) {
   expGrid.innerHTML = experiences
@@ -206,8 +198,7 @@ if (expGrid) {
     .join("");
 }
 
-/* ----- Reveal on scroll ----- */
-const observer = new IntersectionObserver(
+const observer = new IntersectionObserver( //This code is for the elements, it adds a class when they show on screen and it animates them
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -220,14 +211,53 @@ const observer = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-/* ----- Navbar scroll state ----- */
 const navbar = document.getElementById("navbar");
 if (navbar) {
-  const onScroll = () => navbar.classList.toggle("scrolled", window.scrollY > 60);
-  window.addEventListener("scroll", onScroll, { passive: true });
+  const onScroll = () => navbar.classList.toggle("scrolled", window.scrollY > 60); 
+  window.addEventListener("scroll", onScroll, { passive: true }); //This code makes the navbar change and look differenct if the user starts scrolling down
   onScroll();
 }
 
-/* ----- Footer year ----- */
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+const modalOverlay = document.getElementById("booking-modal-overlay");
+const modalClose = document.getElementById("booking-modal-close");
+const refCodeEl = document.getElementById("booking-ref-code");
+
+function generateRef() { //This makes a random booking code, for the confirmation to popup. I rushed this part so i put basic code since this is not a neccesity
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let code = "TRP-";
+  for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code;
+}
+
+function openBookingModal(e) { //This prevents the link from going anywhere then shows the booking popup
+  e.preventDefault();
+  if (refCodeEl) refCodeEl.textContent = generateRef();
+  if (modalOverlay) modalOverlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeBookingModal() {
+  if (modalOverlay) modalOverlay.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.querySelectorAll('a[href="palawan.html"], .nav-actions .btn-primary, .booking-btn').forEach((el) => { //This code sticks the booking popup to all the "book now" buttons on the page. Also an issue with this code is sometimes when clicking another button, it might give u a confirmation code
+  el.addEventListener("click", openBookingModal);
+});
+
+document.querySelector(".hero-btn")?.addEventListener("click", openBookingModal);
+
+if (modalClose) modalClose.addEventListener("click", closeBookingModal);
+
+if (modalOverlay) {
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) closeBookingModal();
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeBookingModal();
+});

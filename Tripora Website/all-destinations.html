@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Destinations — Tripora</title>
+  <meta name="description" content="Browse every destination available for booking with Tripora." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .all-hero {
+      position: relative;
+      padding: 10rem 0 5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .all-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, hsla(195, 80%, 50%, 0.12), transparent 70%),
+                  radial-gradient(ellipse 60% 50% at 80% 100%, hsla(280, 60%, 55%, 0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .all-hero-orb {
+      position: absolute;
+      width: 28rem; height: 28rem;
+      border-radius: 999px;
+      filter: blur(100px);
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .all-hero-orb-1 { left: -6rem; top: -4rem; background: var(--primary); }
+    .all-hero-orb-2 { right: -6rem; bottom: -4rem; background: var(--secondary); }
+    .all-hero .eyebrow { margin-bottom: 1.25rem; }
+    .all-hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .all-hero-title em { font-style: italic; color: var(--primary); }
+    .all-hero-lead {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 34rem;
+      margin: 0 auto 2.5rem;
+    }
+    .all-hero-stats {
+      display: inline-flex;
+      gap: 2.5rem;
+      background: hsla(220, 25%, 13%, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.75rem 2rem;
+      backdrop-filter: blur(10px);
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .all-hero-stats strong { color: var(--foreground); font-weight: 600; }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: hsla(0, 0%, 100%, 0.04);
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #001220;
+    }
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 0.25rem;
+    }
+
+    .all-destinations-section { padding: 0 0 7rem; }
+    .all-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 900px) { .all-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .all-grid { grid-template-columns: 1fr; } }
+
+    .all-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .all-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px -15px hsla(0, 0%, 0%, 0.5);
+    }
+    .all-card-img {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    .all-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+    .all-card:hover .all-card-img img { transform: scale(1.08); }
+    .all-card-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, hsla(0,0%,0%,0.65), transparent 55%);
+    }
+    .all-card-num {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      font-family: var(--serif);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: hsla(0,0%,100%,0.5);
+      letter-spacing: 0.1em;
+    }
+    .all-card-region {
+      position: absolute;
+      bottom: 1rem; right: 1rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: hsla(0,0%,100%,0.8);
+      background: hsla(0,0%,0%,0.35);
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+    }
+    .all-card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .all-card-name {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .all-card-desc {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+    .all-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .all-card-price {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .all-card-price strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--foreground);
+    }
+    .all-card-book {
+      padding: 0.6rem 1.35rem;
+      font-size: 0.88rem;
+    }
+
+    .all-card.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <svg class="brand-logo" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2.5" />
+          <path d="M32 8 L36 32 L56 32 L36 36 L32 56 L28 36 L8 32 L28 32 Z" fill="currentColor" />
+          <circle cx="32" cy="32" r="4" fill="#0b1220" />
+        </svg>
+        <div class="brand-text">
+          <div class="brand-name">TRIPORA</div>
+          <div class="brand-tagline">Plan Your Trips With 10 Clicks</div>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#destinations">Destinations</a>
+        <a href="index.html#experiences">Experiences</a>
+        <a href="journal.html">Journal</a>
+        <a href="#">About</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </button>
+        <a href="signup.html" class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+        </a>
+        <a href="#" class="btn btn-primary book-trigger">Book Now</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="all-hero">
+    <div class="all-hero-bg"></div>
+    <div class="all-hero-orb all-hero-orb-1"></div>
+    <div class="all-hero-orb all-hero-orb-2"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <p class="eyebrow">The Tripora Atlas</p>
+      <h1 class="all-hero-title">Every destination,<br /><em>one place.</em></h1>
+      <p class="all-hero-lead">Browse our full collection of handpicked destinations and book your next chapter in just a few clicks.</p>
+      <div class="all-hero-stats">
+        <span><strong>12</strong> destinations</span>
+        <span><strong>3</strong> continents</span>
+        <span><strong>12k+</strong> travelers sent off</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="all-destinations-section">
+    <div class="container">
+
+      <div class="filter-bar">
+        <span class="filter-label">Filter:</span>
+        <button class="filter-btn active" data-region="all">All</button>
+        <button class="filter-btn" data-region="Asia">Asia</button>
+        <button class="filter-btn" data-region="Europe">Europe</button>
+        <button class="filter-btn" data-region="Indian Ocean">Indian Ocean</button>
+        <button class="filter-btn" data-region="Middle East">Middle East</button>
+        <button class="filter-btn" data-region="Americas">Americas</button>
+      </div>
+
+      <div class="all-grid" id="all-grid"></div>
+    </div>
+  </section>
+
+  <div class="booking-modal-overlay" id="booking-modal-overlay">
+    <div class="booking-modal">
+      <div class="booking-modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <p class="booking-modal-eyebrow">You're all set</p>
+      <h2 class="booking-modal-title">Booking Confirmed!</h2>
+      <p class="booking-modal-desc">Your adventure is officially on the calendar. Our concierge will reach out within 24 hours to finalise every detail.</p>
+      <div class="booking-modal-ref">
+        <span class="booking-modal-ref-label">Confirmation Ref</span>
+        <span class="booking-modal-ref-code" id="booking-ref-code">TRP-000000</span>
+      </div>
+      <button class="btn btn-primary booking-modal-close" id="booking-modal-close">Done</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand brand-footer">
+            <svg class="brand-logo" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2.5" />
+              <path d="M32 8 L36 32 L56 32 L36 36 L32 56 L28 36 L8 32 L28 32 Z" fill="currentColor" />
+              <circle cx="32" cy="32" r="4" fill="#0b1220" />
+            </svg>
+            <span class="brand-name">TRIPORA</span>
+          </a>
+          <p class="footer-tagline">Curating unforgettable journeys for those who seek the extraordinary.</p>
+        </div>
+        <div>
+          <h5>Explore</h5>
+          <ul><li><a href="all-destinations.html">All Destinations</a></li><li><a href="index.html#experiences">Experiences</a></li><li><a href="#">Journal</a></li><li><a href="#">About</a></li></ul>
+        </div>
+        <div>
+          <h5>Support</h5>
+          <ul><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li><li><a href="#">Concierge</a></li><li><a href="#">Press</a></li></ul>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Cookies</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Tripora. All rights reserved.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/explore/tags/travel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a href="https://x.com/search?q=travel" target="_blank" rel="noopener noreferrer" aria-label="Twitter">X</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Youtube">YT</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const destinations = [
+      {
+        name: "Palawan",
+        country: "Philippines",
+        region: "Asia",
+        desc: "Glide through emerald lagoons hidden between towering limestone cliffs. Sleep where the sea is the only soundtrack.",
+        image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/e7/b0/ea/photo0jpg.jpg?w=1200&h=700&s=1",
+        price: "$2,490",
+        nights: "7 nights"
+      },
+      {
+        name: "Tokyo",
+        country: "Japan",
+        region: "Asia",
+        desc: "Neon-soaked alleys and centuries-old shrines, hidden ramen counters and skyline observatories.",
+        image: "https://wallpapercat.com/w/full/7/b/f/717538-1920x1080-desktop-1080p-tokyo-japan-background-photo.jpg",
+        price: "$3,190",
+        nights: "8 nights"
+      },
+      {
+        name: "Istanbul",
+        country: "Turkey",
+        region: "Europe",
+        desc: "Where continents and centuries collide. Drift between bazaars, Bosphorus ferries, and rooftop calls to prayer.",
+        image: "https://images.trvl-media.com/lodging/18000000/17860000/17853400/17853393/11743fb7.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+        price: "$2,150",
+        nights: "6 nights"
+      },
+      {
+        name: "Maldives",
+        country: "Indian Ocean",
+        region: "Indian Ocean",
+        desc: "Overwater villas, bioluminescent shores, and the deepest blue you have ever seen. Pure horizon-line therapy.",
+        image: "https://www.dmcmaldives.com/wp-content/uploads/2019/08/blue-ocean-in-maldives-uhd-wallpaper-2560x1440.jpg",
+        price: "$4,800",
+        nights: "7 nights"
+      },
+      {
+        name: "Bali",
+        country: "Indonesia",
+        region: "Asia",
+        desc: "Jungle terraces, spiritual temples, and the kind of sunsets that make you reconsider everything.",
+        image: "https://www.outlooktravelmag.com/media/bali-1-1679062958.profileImage.2x-scaled-webp.webp",
+        price: "$1,990",
+        nights: "9 nights"
+      },
+      {
+        name: "Santorini",
+        country: "Greece",
+        region: "Europe",
+        desc: "Whitewashed cliffs over sapphire seas, volcanic beaches, and wine at sunset above the caldera.",
+        image: "https://ginaonaplane.com/wp-content/uploads/2024/01/Greece.webp",
+        price: "$2,750",
+        nights: "6 nights"
+      },
+      {
+        name: "Kyoto",
+        country: "Japan",
+        region: "Asia",
+        desc: "Lantern-lit streets and ancient temples, tea ceremonies and bamboo groves shrouded in morning mist.",
+        image: "https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2026/02/03/0ed70ebf98b24c2fad65131df6ba8394_Kyoto_Travel_Guide_Japan_Michelin.jpg",
+        price: "$2,890",
+        nights: "7 nights"
+      },
+      {
+        name: "Patagonia",
+        country: "Chile",
+        region: "Americas",
+        desc: "Untamed glaciers at the edge of the world. Fjords, condors, and silence you can almost hear.",
+        image: "https://cdn.kimkim.com/files/a/images/7f5bf49f3bcbf0debbda3f19e9bc3d06803bb0e3/original-52cfe7995413f7cc4bbd31944a97a819.jpg",
+        price: "$3,650",
+        nights: "10 nights"
+      },
+      {
+        name: "Dubai",
+        country: "UAE",
+        region: "Middle East",
+        desc: "A skyline of glass and gold rising above the dunes. Rooftop infinity pools, desert safaris, and gold-leaf brunches.",
+        image: "https://cdn.wallpapersafari.com/66/18/Unz9XZ.jpg",
+        price: "$3,100",
+        nights: "6 nights"
+      },
+      {
+        name: "Thailand",
+        country: "Southeast Asia",
+        region: "Asia",
+        desc: "Limestone islands, longtail sunsets, floating markets, and the warmest smiles on earth.",
+        image: "https://www.wedaways.com/wp-content/uploads/2019/09/thailand-honeymoon-1024x683.jpg",
+        price: "$1,850",
+        nights: "10 nights"
+      },
+      {
+        name: "Kerala",
+        country: "India",
+        region: "Asia",
+        desc: "Houseboats drifting through palm-lined backwaters, spice gardens, and Ayurvedic retreats in the hills.",
+        image: "https://wallpapercat.com/w/full/4/9/e/851709-3840x2160-desktop-4k-kerala-wallpaper-image.jpg",
+        price: "$1,650",
+        nights: "8 nights"
+      },
+      {
+        name: "Georgia",
+        country: "Caucasus",
+        region: "Europe",
+        desc: "Stone churches in the shadow of Kazbek, ancient wine culture, and hospitality that humbles every guest.",
+        image: "https://static01.nyt.com/images/2013/11/01/t-magazine/01well-tbilisi-slide-MCOX/01well-tbilisi-slide-MCOX-superJumbo.jpg",
+        price: "$1,490",
+        nights: "7 nights"
+      },
+    ];
+
+    const grid = document.getElementById("all-grid");
+
+    function renderCards(filter) {
+      grid.innerHTML = destinations
+        .filter(d => filter === "all" || d.region === filter)
+        .map((d, i) => `
+          <div class="all-card reveal" data-reveal="up" data-region="${d.region}" style="transition-delay:${(i % 3) * 0.08}s">
+            <div class="all-card-img">
+              <img src="${d.image}" alt="${d.name}" loading="lazy">
+              <div class="all-card-img-overlay"></div>
+              <div class="all-card-num">${String(i + 1).padStart(2, "0")}</div>
+              <div class="all-card-region">${d.country}</div>
+            </div>
+            <div class="all-card-body">
+              <div class="all-card-name">${d.name}</div>
+              <p class="all-card-desc">${d.desc}</p>
+              <div class="all-card-meta">
+                <div class="all-card-price">
+                  <strong>${d.price}</strong>
+                  from / ${d.nights}
+                </div>
+                <button class="btn btn-primary all-card-book book-trigger">Book Now</button>
+              </div>
+            </div>
+          </div>
+        `).join("");
+
+      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+      document.querySelectorAll(".book-trigger").forEach(el => {
+        el.addEventListener("click", openBookingModal);
+      });
+    }
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderCards(btn.dataset.region);
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in-view"); observer.unobserve(e.target); } }),
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    const modalOverlay = document.getElementById("booking-modal-overlay");
+    const modalClose = document.getElementById("booking-modal-close");
+    const refCodeEl = document.getElementById("booking-ref-code");
+
+    function generateRef() {
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let code = "TRP-";
+      for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+      return code;
+    }
+
+    function openBookingModal(e) {
+      e.preventDefault();
+      if (refCodeEl) refCodeEl.textContent = generateRef();
+      modalOverlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeBookingModal() {
+      modalOverlay.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    modalClose.addEventListener("click", closeBookingModal);
+    modalOverlay.addEventListener("click", e => { if (e.target === modalOverlay) closeBookingModal(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeBookingModal(); });
+
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => navbar.classList.toggle("scrolled", window.scrollY > 60), { passive: true });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    renderCards("all");
+  </script>
+</body>
+</html>

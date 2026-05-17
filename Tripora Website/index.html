@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Navbar -->
-  <header class="navbar" id="navbar">
+
+  <header class="navbar" id="navbar"> <!--This code is for the top navigation bar so that when you scroll, it changes-->
     <div class="container nav-inner">
       <a href="index.html" class="brand">
         <svg class="brand-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,28 +28,27 @@
       <nav class="nav-links">
         <a href="#destinations">Destinations</a>
         <a href="#experiences">Experiences</a>
-        <a href="#">Journal</a>
+        <a href="journal.html">Journal</a>
         <a href="#">About</a>
       </nav>
       <div class="nav-actions">
         <button class="icon-btn" aria-label="Search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         </button>
-        <button class="icon-btn" aria-label="Account">
+        <a href="signup.html" class="icon-btn" aria-label="Account">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-        </button>
+        </a>
         <a href="#" class="btn btn-primary">Book Now</a>
       </div>
     </div>
   </header>
 
-  <!-- Hero slideshow -->
-  <section class="hero">
+  <section class="hero"> <!--this is where the background image goes, the js switchest them-->
     <div class="hero-slides" id="hero-slides"></div>
     <div class="hero-overlay"></div>
 
     <div class="container hero-content">
-      <div class="hero-bg-text" id="hero-bg-text">PHILIPPINES</div>
+      <div class="hero-bg-text" id="hero-bg-text">PHILIPPINES</div> <!--This is the big trasparent text right behind the title, you can remove this to make it look cleaner if you want but i personally like the concecpt, this also changes with each slide-->
 
       <div class="hero-left">
         <p class="hero-country" id="hero-country">PHILIPPINES</p>
@@ -62,18 +61,17 @@
       </div>
 
       <div class="hero-right">
-        <div class="hero-cards" id="hero-cards"></div>
+        <div class="hero-cards" id="hero-cards"></div> <!--this code add the small preview cards on the right side, they are also clickable-->
         <div class="hero-controls">
-          <button id="prev-slide" class="circle-btn" aria-label="Previous">‹</button>
+          <button id="prev-slide" class="circle-btn" aria-label="Previous">‹</button> <!--this code adds and lets you go to the previous or to the next slide-->
           <button id="next-slide" class="circle-btn" aria-label="Next">›</button>
         </div>
         <div class="hero-counter">
-          <span id="slide-num">01</span><span class="hero-counter-total"> / 04</span>
+          <span id="slide-num">01</span><span class="hero-counter-total"> / 04</span> <!--This codes adds ands shows which number of the slides ur viewing, like palawan is 1, istanbul is 2 and so on-->
         </div>
       </div>
     </div>
 
-    <!-- Booking widget -->
     <div class="container booking-wrap">
       <div class="booking-widget">
         <div class="booking-field">
@@ -102,14 +100,12 @@
     </div>
   </section>
 
-  <!-- Marquee -->
   <section class="marquee">
     <div class="marquee-fade marquee-fade-left"></div>
     <div class="marquee-fade marquee-fade-right"></div>
     <div class="marquee-track" id="marquee-track"></div>
   </section>
 
-  <!-- Destinations -->
   <section class="destinations" id="destinations">
     <div class="orb orb-primary"></div>
     <div class="orb orb-secondary"></div>
@@ -120,14 +116,13 @@
           <h2 class="section-title">Mythical places.<br /><em>Real</em> experiences.</h2>
           <p class="lead">Every destination is a story waiting to be written. We handpick locations that stir the soul and leave a lasting mark on your memory.</p>
         </div>
-        <a href="#" class="btn btn-outline section-cta">View all destinations →</a>
+        <a href="all-destinations.html" target="_blank" class="btn btn-outline section-cta">View all destinations →</a>
       </div>
 
-      <div class="destinations-grid" id="destinations-grid"></div>
+      <div class="destinations-grid" id="destinations-grid"></div> <!--JS adds the destination cards here-->
     </div>
   </section>
 
-  <!-- Storytelling -->
   <section class="storytelling">
     <div class="container">
       <div class="story-grid">
@@ -179,7 +174,6 @@
     </div>
   </section>
 
-  <!-- Experiences -->
   <section class="experiences" id="experiences">
     <div class="container">
       <div class="text-center reveal" data-reveal="up">
@@ -192,7 +186,6 @@
     </div>
   </section>
 
-  <!-- Stats -->
   <section class="stats">
     <div class="stats-bg"><img src="images/bali-terraces.png" alt="" /></div>
     <div class="stats-overlay"></div>
@@ -204,7 +197,6 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
   <section class="testimonials">
     <div class="container">
       <div class="testimonials-grid">
@@ -223,7 +215,7 @@
         </div>
 
         <div class="testimonial-image-wrap reveal" data-reveal="up">
-          <div class="testimonial-image float"><img src="images/palawan-lagoons.png" alt="Happy travelers" /></div>
+          <div class="testimonial-image float"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/14/1e/90/serene-beauty-of-the.jpg?w=1200&h=-1&s=1" alt="Happy travelers" /></div>
           <div class="rating-pill">
             <div class="stars">★ ★ ★ ★ ★</div>
             <div>4.9 / 5 from 2,400+ reviews</div>
@@ -233,9 +225,8 @@
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta">
-    <div class="cta-bg"><img src="images/maldives.png" alt="" /></div>
+    <div class="cta-bg"><img src="https://www.fushifaru.com/wp-content/uploads/2025/03/villas-1.webp" alt="" /></div>
     <div class="cta-overlay"></div>
     <div class="container text-center cta-content reveal" data-reveal="up">
       <h2 class="cta-title">Your next chapter is <em>already booked.</em></h2>
@@ -244,7 +235,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -275,14 +265,33 @@
       <div class="footer-bottom">
         <p>© <span id="year"></span> Tripora. All rights reserved.</p>
         <div class="socials">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="Twitter">X</a>
+          <a href="https://www.instagram.com/explore/tags/travel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+          <a href="https://x.com/search?q=travel" target="_blank" rel="noopener noreferrer" aria-label="Twitter">X</a>
           <a href="#" aria-label="Facebook">FB</a>
           <a href="#" aria-label="Youtube">YT</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <div class="booking-modal-overlay" id="booking-modal-overlay">
+    <div class="booking-modal">
+      <div class="booking-modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <p class="booking-modal-eyebrow">You're all set</p>
+      <h2 class="booking-modal-title">Booking Confirmed!</h2>
+      <p class="booking-modal-desc">Your adventure is officially on the calendar. Our concierge will reach out within 24 hours to finalise every detail.</p>
+      <div class="booking-modal-ref">
+        <span class="booking-modal-ref-label">Confirmation Ref</span>
+        <span class="booking-modal-ref-code" id="booking-ref-code">TRP-000000</span>
+      </div>
+      <button class="btn btn-primary booking-modal-close" id="booking-modal-close">Done</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

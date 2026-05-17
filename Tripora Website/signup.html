@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — Tripora</title>
+  <meta name="description" content="Sign up for Tripora and start planning your next adventure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .signup-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 768px) {
+      .signup-page { grid-template-columns: 1fr; }
+      .signup-visual { display: none; }
+    }
+
+    .signup-visual {
+      position: relative;
+      overflow: hidden;
+    }
+    .signup-visual-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .signup-visual-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, hsla(220,30%,5%,0.55) 0%, hsla(195,80%,30%,0.35) 100%);
+    }
+    .signup-visual-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem;
+    }
+    .signup-visual-quote {
+      margin-top: auto;
+      background: hsla(0,0%,0%,0.3);
+      backdrop-filter: blur(12px);
+      border: 1px solid hsla(0,0%,100%,0.15);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+    }
+    .signup-visual-quote blockquote {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-style: italic;
+      line-height: 1.45;
+      margin-bottom: 1.25rem;
+      color: #fff;
+    }
+    .signup-visual-quote-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .signup-avatar {
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      color: #001220;
+      font-size: 0.95rem;
+    }
+    .signup-author-name { font-weight: 600; font-size: 0.93rem; color: #fff; }
+    .signup-author-meta { font-size: 0.78rem; color: hsla(0,0%,100%,0.6); }
+    .signup-visual-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid hsla(0,0%,100%,0.15);
+    }
+    .signup-stat-value {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .signup-stat-label {
+      font-size: 0.75rem;
+      color: hsla(0,0%,100%,0.55);
+      margin-top: 0.1rem;
+    }
+
+    .signup-form-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      min-height: 100vh;
+      background: var(--bg);
+    }
+    .signup-form-inner {
+      width: 100%;
+      max-width: 420px;
+    }
+    .signup-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 3rem;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+    .signup-brand svg { width: 32px; height: 32px; color: var(--primary); }
+    .signup-brand-name {
+      font-family: var(--serif);
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: 0.18em;
+    }
+    .signup-heading {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+    .signup-heading em { font-style: italic; color: var(--primary); }
+    .signup-sub {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .form-input-wrap { position: relative; }
+    .form-input-icon {
+      position: absolute;
+      left: 1rem; top: 50%;
+      transform: translateY(-50%);
+      width: 18px; height: 18px;
+      color: var(--muted);
+      pointer-events: none;
+    }
+    .form-input {
+      width: 100%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      color: var(--foreground);
+      font: inherit;
+      font-size: 0.96rem;
+      padding: 0.85rem 1rem 0.85rem 2.85rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input::placeholder { color: hsla(0,0%,100%,0.3); }
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px hsla(195,80%,50%,0.15);
+    }
+    .form-input.error { border-color: hsl(0,70%,55%); }
+    .form-error {
+      font-size: 0.78rem;
+      color: hsl(0,70%,65%);
+      margin-top: 0.4rem;
+      display: none;
+    }
+    .form-error.visible { display: block; }
+
+    .pw-toggle {
+      position: absolute;
+      right: 0.9rem; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0.25rem;
+      display: flex; align-items: center;
+      transition: color 0.2s;
+    }
+    .pw-toggle:hover { color: var(--foreground); }
+    .pw-toggle svg { width: 18px; height: 18px; }
+
+    .pw-strength {
+      display: flex;
+      gap: 4px;
+      margin-top: 0.5rem;
+    }
+    .pw-bar {
+      flex: 1; height: 3px;
+      border-radius: 999px;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+    .pw-bar.weak   { background: hsl(0,70%,55%); }
+    .pw-bar.medium { background: hsl(40,90%,55%); }
+    .pw-bar.strong { background: hsl(145,65%,48%); }
+    .pw-strength-label {
+      font-size: 0.73rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+
+    .terms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+      margin-top: 0.25rem;
+    }
+    .terms-checkbox {
+      width: 18px; height: 18px; min-width: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      margin-top: 2px;
+    }
+    .terms-text { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+    .terms-text a { color: var(--primary); text-decoration: underline; }
+
+    .signup-submit { width: 100%; padding: 1rem; font-size: 1rem; justify-content: center; }
+
+    .form-divider {
+      display: flex; align-items: center;
+      gap: 1rem; margin: 1.5rem 0;
+      color: var(--muted); font-size: 0.82rem;
+    }
+    .form-divider::before, .form-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .signin-link {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 1.5rem;
+    }
+    .signin-link a { color: var(--primary); font-weight: 600; }
+
+    .signup-success { display: none; text-align: center; padding: 1rem 0; }
+    .signup-success.visible { display: block; }
+    .signup-form-fields.hidden { display: none; }
+    .success-icon {
+      width: 72px; height: 72px;
+      border-radius: 999px;
+      background: hsla(195,80%,50%,0.12);
+      border: 1px solid hsla(195,80%,50%,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--primary);
+    }
+    .success-icon svg { width: 34px; height: 34px; }
+    .success-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .success-desc { color: var(--muted); font-size: 0.96rem; margin-bottom: 2rem; line-height: 1.6; }
+    .success-email-pill {
+      display: inline-block;
+      background: hsla(195,80%,50%,0.1);
+      border: 1px solid hsla(195,80%,50%,0.25);
+      border-radius: 999px;
+      padding: 0.4rem 1.1rem;
+      font-size: 0.88rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-page">
+
+    <div class="signup-visual">
+      <img class="signup-visual-img" src="https://www.dmcmaldives.com/wp-content/uploads/2019/08/blue-ocean-in-maldives-uhd-wallpaper-2560x1440.jpg" alt="Maldives" />
+      <div class="signup-visual-overlay"></div>
+      <div class="signup-visual-content">
+        <a href="index.html" style="color:#fff;text-decoration:none;display:flex;align-items:center;gap:0.6rem;">
+          <svg style="width:34px;height:34px;color:hsl(195,80%,50%);" viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2.5" />
+            <path d="M32 8 L36 32 L56 32 L36 36 L32 56 L28 36 L8 32 L28 32 Z" fill="currentColor" />
+            <circle cx="32" cy="32" r="4" fill="#0b1220" />
+          </svg>
+          <span style="font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;letter-spacing:0.18em;">TRIPORA</span>
+        </a>
+
+        <div class="signup-visual-quote">
+          <blockquote>"Tripora turned my dream itinerary into reality. Every detail was perfect — from the overwater villa to the private sunset cruise."</blockquote>
+          <div class="signup-visual-quote-author">
+            <div class="signup-avatar">M</div>
+            <div>
+              <div class="signup-author-name">Maya Larsson</div>
+              <div class="signup-author-meta">Traveled to the Maldives</div>
+            </div>
+          </div>
+          <div class="signup-visual-stats">
+            <div>
+              <div class="signup-stat-value">12k+</div>
+              <div class="signup-stat-label">Happy travelers</div>
+            </div>
+            <div>
+              <div class="signup-stat-value">4.9★</div>
+              <div class="signup-stat-label">Average rating</div>
+            </div>
+            <div>
+              <div class="signup-stat-value">84</div>
+              <div class="signup-stat-label">Destinations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signup-form-panel">
+      <div class="signup-form-inner">
+
+        <a href="index.html" class="signup-brand">
+          <svg viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2.5" />
+            <path d="M32 8 L36 32 L56 32 L36 36 L32 56 L28 36 L8 32 L28 32 Z" fill="currentColor" />
+            <circle cx="32" cy="32" r="4" fill="#0b1220" />
+          </svg>
+          <span class="signup-brand-name">TRIPORA</span>
+        </a>
+
+        <h1 class="signup-heading">Start your<br /><em>journey.</em></h1>
+        <p class="signup-sub">Create your free account and unlock every destination.</p>
+
+        <div class="signup-success" id="signup-success">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h2 class="success-title">Welcome aboard!</h2>
+          <p class="success-desc">Your account has been created. A confirmation email is on its way to:</p>
+          <div class="success-email-pill" id="success-email-display"></div>
+          <a href="index.html" class="btn btn-primary" style="width:100%;justify-content:center;">Start Exploring →</a>
+        </div>
+
+        <form class="signup-form-fields" id="signup-form" novalidate>
+
+          <div class="form-group">
+            <label class="form-label" for="name">Full Name</label>
+            <div class="form-input-wrap">
+              <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>
+              </svg>
+              <input class="form-input" type="text" id="name" placeholder="Your full name" autocomplete="name" />
+            </div>
+            <div class="form-error" id="name-error">Please enter your name.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <div class="form-input-wrap">
+              <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/>
+              </svg>
+              <input class="form-input" type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <div class="form-error" id="email-error">Please enter a valid email address.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="form-input-wrap">
+              <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <input class="form-input" type="password" id="password" placeholder="At least 8 characters" autocomplete="new-password" />
+              <button type="button" class="pw-toggle" id="pw-toggle" aria-label="Toggle password">
+                <svg id="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <div class="pw-strength" id="pw-strength">
+              <div class="pw-bar" id="pw-bar-1"></div>
+              <div class="pw-bar" id="pw-bar-2"></div>
+              <div class="pw-bar" id="pw-bar-3"></div>
+              <div class="pw-bar" id="pw-bar-4"></div>
+            </div>
+            <div class="pw-strength-label" id="pw-label"></div>
+            <div class="form-error" id="pw-error">Password must be at least 8 characters.</div>
+          </div>
+
+          <div class="terms-row">
+            <input type="checkbox" class="terms-checkbox" id="terms" />
+            <label class="terms-text" for="terms">
+              I agree to Tripora's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+            </label>
+          </div>
+          <div class="form-error" id="terms-error" style="margin-top:-1rem;margin-bottom:1rem;">You must agree to the terms to continue.</div>
+
+          <button type="submit" class="btn btn-primary signup-submit">Create My Account</button>
+
+          <div class="signin-link">
+            Already have an account? <a href="#">Sign in</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const pwInput  = document.getElementById("password");
+    const pwToggle = document.getElementById("pw-toggle");
+    const eyeIcon  = document.getElementById("eye-icon");
+    const eyeOpen   = `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>`;
+    const eyeClosed = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-10-8-10-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 10 8 10 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="2" y1="2" x2="22" y2="22"/>`;
+    pwToggle.addEventListener("click", () => {
+      const hidden = pwInput.type === "password";
+      pwInput.type = hidden ? "text" : "password";
+      eyeIcon.innerHTML = hidden ? eyeClosed : eyeOpen;
+    });
+
+    const bars = [1,2,3,4].map(n => document.getElementById(`pw-bar-${n}`));
+    const pwLabel = document.getElementById("pw-label");
+    function getStrength(pw) {
+      let s = 0;
+      if (pw.length >= 8)  s++;
+      if (pw.length >= 12) s++;
+      if (/[A-Z]/.test(pw) && /[a-z]/.test(pw)) s++;
+      if (/[0-9]/.test(pw) || /[^A-Za-z0-9]/.test(pw)) s++;
+      return s;
+    }
+    pwInput.addEventListener("input", () => {
+      const pw = pwInput.value;
+      const score = pw.length === 0 ? 0 : getStrength(pw);
+      const levels = ["","weak","weak","medium","strong"];
+      const labels = ["","Too short","Weak","Medium","Strong"];
+      bars.forEach((b, i) => { b.className = "pw-bar"; if (i < score) b.classList.add(levels[score]); });
+      pwLabel.textContent = pw.length ? labels[score] : "";
+    });
+
+    const form           = document.getElementById("signup-form");
+    const successPanel   = document.getElementById("signup-success");
+    const successEmailEl = document.getElementById("success-email-display");
+
+    function showError(id, show) { document.getElementById(id).classList.toggle("visible", show); }
+    function setInputError(id, err) { const el = document.getElementById(id); if (el) el.classList.toggle("error", err); }
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const name  = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const pw    = document.getElementById("password").value;
+      const terms = document.getElementById("terms").checked;
+      let valid = true;
+
+      if (!name)  { showError("name-error", true);  setInputError("name", true);  valid = false; }
+      else        { showError("name-error", false); setInputError("name", false); }
+
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!emailOk) { showError("email-error", true);  setInputError("email", true);  valid = false; }
+      else          { showError("email-error", false); setInputError("email", false); }
+
+      if (pw.length < 8) { showError("pw-error", true);  setInputError("password", true);  valid = false; }
+      else               { showError("pw-error", false); setInputError("password", false); }
+
+      if (!terms) { showError("terms-error", true);  valid = false; }
+      else        { showError("terms-error", false); }
+
+      if (valid) {
+        form.classList.add("hidden");
+        successEmailEl.textContent = email;
+        successPanel.classList.add("visible");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+
+    ["name","email","password"].forEach(id => {
+      document.getElementById(id).addEventListener("input", () => {
+        showError(`${id === "password" ? "pw" : id}-error`, false);
+        setInputError(id, false);
+      });
+    });
+  </script>
+</body>
+</html>
